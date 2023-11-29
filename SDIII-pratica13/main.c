@@ -2,15 +2,16 @@
 //----------------------------- Bibliotecas ------------------------------------
 //#include  <msp430.h>
 #include "io430.h"
+
 #include "teclado.h"
 
-//----------------------------- Definições ------------------------------------
+
 # define CICLOS	999	//Define um período de 1000 pulsos de clock (F=1kHZ) 
 # define CICLOS_METADE 473
 //******************************************************************************
 
 unsigned char tecla;                          // Cria as variaveis que vãi armazenar as teclas
-/*
+
 unsigned char cont_init, cont_passos;
 void rampa (void)
 {
@@ -18,26 +19,26 @@ void rampa (void)
  cont_init = 200;
  cont_passos = 50;
    //
-  TACCTL0 = CCIFG;
+  TACCTL0 = CCIE;
    __bis_SR_register(GIE);   	// Habilita interrupção geral
 
   //
    while( cont_passos != 0)
    {
    while(1)
-   {   if(cont_init)
+   {   if(cont_init == 0)
           break;
    }
    TA0CCR1+=10;			//Incrementa DT
    cont_init = 200;
    cont_passos--;
    }
-   TACCTL0 ^= CCIFG;
+   TACCTL0_bit.CCIE = 0;
    __bic_SR_register(GIE);   	// Habilita interrupção geral
 
 }
 
-*/
+
 // Programa principal
 void main(void)
 {
@@ -96,16 +97,18 @@ void main(void)
               TA0CCR1=CICLOS_METADE+100;        // Coloca na rotação horario com 10% da velocidade total
             //Sendo 1000 a velocidade total, 10% de 1000=100, logo 10% no sentido horario é o 50% (ele patrado) mais 100.
             
-           /* if(tecla == '8')
+            if(tecla == '8')
             {
                 rampa();
-            */
+            }
+                
+            
             
 	}
 
 }
 
-/*
+
 // Interrupção do TimerA0
 #pragma vector=TIMER0_A0_VECTOR
 __interrupt void baseTempo()
@@ -114,5 +117,3 @@ __interrupt void baseTempo()
     cont_init--;
   
 }
-
-*/
