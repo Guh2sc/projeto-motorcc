@@ -2,9 +2,7 @@
 //----------------------------- Bibliotecas ------------------------------------
 //#include  <msp430.h>
 #include "io430.h"
-
 #include "teclado.h"
-
 
 # define CICLOS	999	//Define um período de 1000 pulsos de clock (F=1kHZ) 
 # define CICLOS_METADE 473
@@ -101,13 +99,10 @@ void main(void)
             {
                 rampa();
             }
-                
-            
-            
+                                       
 	}
 
 }
-
 
 // Interrupção do TimerA0
 #pragma vector=TIMER0_A0_VECTOR
